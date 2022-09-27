@@ -263,8 +263,4 @@ def agent(observation, configuration):
                     with open(logfile, "a") as f:
                         f.write(f"{observation['step']}: Doing research! \n")
 
-    if observation["step"] == 359:
-        with open(statsfile,"a") as f:
-            f.write(f"{len(city_tiles)}\n")
-
     return actions
