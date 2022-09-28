@@ -190,16 +190,19 @@ def agent(observation, configuration):
                         continue
                 
                 if unit.get_cargo_space_left() > 0:
-                    intended_resource = unit_to_resource_dict[unit.id]
-                    cell = game_state.map.get_cell(intended_resource.pos.x, intended_resource.pos.y)
+                    if np.random.random() >= 0.3:
+                        intended_resource = unit_to_resource_dict[unit.id]
+                        cell = game_state.map.get_cell(intended_resource.pos.x, intended_resource.pos.y)
 
-                    if cell.has_resource():
-                        actions.append(unit.move(unit.pos.direction_to(intended_resource.pos)))
+                        if cell.has_resource():
+                            actions.append(unit.move(unit.pos.direction_to(intended_resource.pos)))
 
-                    else:
-                        intended_resource = get_close_resource(unit, resource_tiles, player)
-                        unit_to_resource_dict[unit.id] = intended_resource
-                        actions.append(unit.move(unit.pos.direction_to(intended_resource.pos)))
+                        else:
+                            intended_resource = get_close_resource(unit, resource_tiles, player)
+                            unit_to_resource_dict[unit.id] = intended_resource
+                            actions.append(unit.move(unit.pos.direction_to(intended_resource.pos)))
+
+                    actions.append(unit.move(random.choice(["n","s","e","w"])))
 
                 else:
                     if build_city:
@@ -224,6 +227,20 @@ def agent(observation, configuration):
                             continue   
 
                         elif len(player.cities) > 0:
+                            if np.random.random() >= 0.3:
+                                if unit.id in unit_to_city_dict and unit_to_city_dict[unit.id] in city_tiles:
+                                    move_dir = unit.pos.direction_to(unit_to_city_dict[unit.id].pos)
+                                    actions.append(unit.move(move_dir))
+
+                                else:
+                                    unit_to_city_dict[unit.id] = get_close_city(player,unit)
+                                    move_dir = unit.pos.direction_to(unit_to_city_dict[unit.id].pos)
+                                    actions.append(unit.move(move_dir))
+                            
+                            actions.append(unit.move(random.choice(["n","s","e","w"])))
+                            
+                    elif len(player.cities) > 0:                        
+                        if np.random.random() >= 0.3:
                             if unit.id in unit_to_city_dict and unit_to_city_dict[unit.id] in city_tiles:
                                 move_dir = unit.pos.direction_to(unit_to_city_dict[unit.id].pos)
                                 actions.append(unit.move(move_dir))
@@ -232,17 +249,8 @@ def agent(observation, configuration):
                                 unit_to_city_dict[unit.id] = get_close_city(player,unit)
                                 move_dir = unit.pos.direction_to(unit_to_city_dict[unit.id].pos)
                                 actions.append(unit.move(move_dir))
-
-                    # if unit is a worker and there is no cargo space left, and we have cities, lets return to them
-                    elif len(player.cities) > 0:
-                        if unit.id in unit_to_city_dict and unit_to_city_dict[unit.id] in city_tiles:
-                            move_dir = unit.pos.direction_to(unit_to_city_dict[unit.id].pos)
-                            actions.append(unit.move(move_dir))
-
-                        else:
-                            unit_to_city_dict[unit.id] = get_close_city(player,unit)
-                            move_dir = unit.pos.direction_to(unit_to_city_dict[unit.id].pos)
-                            actions.append(unit.move(move_dir))
+                        
+                        actions.append(unit.move(random.choice(["n","s","e","w"])))
                             
             except Exception as e:
                 with open(logfile, "a") as f:
@@ -254,10 +262,16 @@ def agent(observation, configuration):
         for city_tile in city_tiles:
             if city_tile.can_act():
                 if can_create > 0:
+                    
+                    if np.random.random() >= 0.3:
+                        continue
+
                     actions.append(city_tile.build_worker())
                     can_create -= 1
+                   
                     with open(logfile, "a") as f:
                         f.write(f"{observation['step']}: Created and worker \n")
+                
                 else:
                     actions.append(city_tile.research())
                     with open(logfile, "a") as f:
