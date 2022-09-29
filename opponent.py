@@ -1,6 +1,6 @@
 from typing import Dict
 import sys
-from agents.greedyStrategicAgent import agent
+from agents.greedyAgent import agent
 
 if __name__ == "__main__":
     

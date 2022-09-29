@@ -1,6 +1,6 @@
 from typing import Dict
 import sys
-from agents.greedyRandomAgent import agent
+from agents.simulatingAnnealingAgent import agent
 
 if __name__ == "__main__":
     
