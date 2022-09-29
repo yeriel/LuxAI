@@ -1,10 +1,15 @@
-# LuxAI
+# LuxAI 
+
+
+**if you want to read this same document but in [Spanish](https://github.com/yeriel/LuxAI/blob/main/Spanish.md)**
 
 ## Introduction
 
 The night is dark and full of terrors. Two teams must fight off the darkness, collect resources, and advance through the ages. Daytime finds a desperate rush to gather the resources that can carry you through the impending night whilst growing your city. Plan and expand carefully -- any city that fails to produce enough light will be consumed by darkness.
 
 The Lux AI Challenge is a competition where competitors design agents to tackle a multi-variable optimization, resource gathering, and allocation problem in a 1v1 scenario against other competitors.
+
+![](https://github.com/Lux-AI-Challenge/Lux-Design-2021/raw/master/assets/daynightshift.gif)
 
 ## Getting Started
 
