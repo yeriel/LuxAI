@@ -39,21 +39,7 @@ After 360 turns the winner is whichever team has the most CityTiles on the map. 
 A game may end early if a team no longer has any more Units or CityTiles. Then the other team wins.
 
 To know the environment conditions and restrictions you saw this [link](https://www.lux-ai.org/specs-2021), along with API documentation see this [document](https://github.com/Lux-AI-Challenge/Lux-Design-2021/tree/master/kits)
-
-##  Agents 
-The repository has 5 types of agents, these are:
-
-- **dummyAgent :** This agent does not perform any action during the whole game, it is the simplest agent that can be performed.
-
-- **baseAgent :** This agent's strategy is to move to the adjacent tile to exploit a resource if it exists, otherwise it returns to its original tile. 
-
-- **randomAgent :** This agent can perform all the actions that are described in the documentation of the competition (see here) only that the decision making is done randomly during the game. This allows the agent to explore rather than exploit, being one of the worst strategies to achieve the objective, not counting the dummyAgent. 
-
-- **simulatingAnnealingAgent :** This agent uses simulating Annealing for decision making from a random approach to a more informed decision making based on manhattan distance. This agent presents an exploration behavior at the beginning of the game and as the turns progress it starts to focus its behavior on the map converging to a single point.
-
-- **greedyAgent :** This agent makes decisions using as a heuristic the manhattan distance between the position of the units and the resources, it also has a strategy of construction of cities based on looking for the best loza so that this is self-supporting during the game. This agent from the beginning of the game presents a more localized behavior given its starting point but still explores enough to obtain resources.
-
-## Algorithm explanation
+## Some theory 
 
 ### Greedy
 A greedy algorithm is any algorithm that follows the problem-solving heuristic of making the locally optimal choice at each stage. In many problems, a greedy strategy does not produce an optimal solution, but a greedy heuristic can yield locally optimal solutions that approximate a globally optimal solution in a reasonable amount of time. [more theory](https://en.wikipedia.org/wiki/Greedy_algorithm)
@@ -74,3 +60,26 @@ Simulating Annealing is a probabilistic technique for approximating the global o
     Output: the final state s
 
 ```
+
+##  Agents 
+The repository has 5 types of agents, these are:
+
+- **dummyAgent :** This agent does not perform any action during the whole game, it is the simplest agent that can be performed.
+
+- **baseAgent :** This agent's strategy is to move to the adjacent tile to exploit a resource if it exists, otherwise it returns to its original tile. 
+
+- **randomAgent :** This agent can perform all the actions that are described in the documentation of the competition (see here) only that the decision making is done randomly during the game. This allows the agent to explore rather than exploit, being one of the worst strategies to achieve the objective, not counting the dummyAgent. 
+
+- **simulatingAnnealingAgent :** This agent uses simulating Annealing for decision making from a random approach to a more informed decision making based on manhattan distance. This agent presents an exploration behavior at the beginning of the game and as the turns progress it starts to focus its behavior on the map converging to a single point.
+
+- **greedyAgent :** This agent makes decisions using as a heuristic the manhattan distance between the position of the units and the resources, it also has a strategy of construction of cities based on looking for the best loza so that this is self-supporting during the game. This agent from the beginning of the game presents a more localized behavior given its starting point but still explores enough to obtain resources.
+
+## Demo
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/BwE4jxz01-o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Observations and notes 
+
+On the one hand, random agent (randomAgent) is the least competitive agent in the environment, it focuses on exploration rather than exploitation, which translates into an ineffective strategy to achieve the objective of the game.
+
+On the other hand, the agents that base their strategy with simulating annealing and greedy show a clear exploration/exploitation behavior more balanced, where the first one evolves during the game from an exploratory behavior to a more focused on exploitation and the second one presents a more localized behavior from the beginning of the game exploiting the resources that are near, so if the starting point of the game presents a high density of resources this strategy is the one that presents the best performance of all.

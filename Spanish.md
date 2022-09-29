@@ -37,20 +37,7 @@ Una partida puede terminar antes de tiempo si un equipo ya no tiene más unidade
 
 Para conocer las condiciones del entorno y las restricciones viste este [enlace](https://www.lux-ai.org/specs-2021), junto con la documentación de la API vea este [documento](https://github.com/Lux-AI-Challenge/Lux-Design-2021/tree/master/kits)
 
-## Agentes 
-El repositorio tiene 5 tipos de agentes, estos son
-
-- **AgenteDummy :** Este agente no realiza ninguna acción durante todo el juego, es el agente más simple que se puede realizar.
-
-- **AgenteBase :** La estrategia de este agente es moverse a la casilla adyacente para explotar un recurso si existe, de lo contrario vuelve a su casilla original. 
-
-- **AgenteRandom :** Este agente puede realizar todas las acciones que se describen en la documentación de la competición sólo que la toma de decisiones se realiza de forma aleatoria durante la partida. Esto permite al agente explorar en lugar de explotar, siendo una de las peores estrategias para conseguir el objetivo, sin contar el dummyAgent. 
-
-- **simulatingAnnealingAgent :** Este agente utiliza simulación de recocido para la toma de decisiones desde un enfoque aleatorio hasta una toma de decisiones más informada basada en la distancia manhattan. Este agente presenta un comportamiento de exploración al principio del juego y a medida que avanzan los turnos comienza a centrar su comportamiento en el mapa convergiendo a un único punto.
-
-- **AgenteGreedy :** Este agente toma decisiones usando como heurística la distancia manhattan entre la posición de las unidades y los recursos, además tiene una estrategia de construcción de ciudades basada en buscar la mejor loza para que esta se auto sostenga durante el juego. Este agente desde el principio del juego presenta un comportamiento más localizado dado su punto de partida pero sigue explorando lo suficiente para obtener recursos.
-
-## Explicación del algoritmo
+## Un poco de teoría
 
 ### Greedy
 Un algoritmo codicioso es cualquier algoritmo que sigue la heurística de resolución de problemas de hacer la elección localmente óptima en cada etapa. En muchos problemas, una estrategia codiciosa no produce una solución óptima, pero una heurística codiciosa puede producir soluciones localmente óptimas que se aproximan a una solución globalmente óptima en un tiempo razonable. [más teoría](https://en.wikipedia.org/wiki/Greedy_algorithm)
@@ -71,3 +58,26 @@ El recocido de simulación es una técnica probabilística para aproximar el óp
     Salida: el estado final s
 
 ```
+
+## Agentes 
+El repositorio tiene 5 tipos de agentes, estos son
+
+- **AgenteDummy :** Este agente no realiza ninguna acción durante todo el juego, es el agente más simple que se puede realizar.
+
+- **AgenteBase :** La estrategia de este agente es moverse a la casilla adyacente para explotar un recurso si existe, de lo contrario vuelve a su casilla original. 
+
+- **AgenteRandom :** Este agente puede realizar todas las acciones que se describen en la documentación de la competición sólo que la toma de decisiones se realiza de forma aleatoria durante la partida. Esto permite al agente explorar en lugar de explotar, siendo una de las peores estrategias para conseguir el objetivo, sin contar el dummyAgent. 
+
+- **simulatingAnnealingAgent :** Este agente utiliza simulación de recocido para la toma de decisiones desde un enfoque aleatorio hasta una toma de decisiones más informada basada en la distancia manhattan. Este agente presenta un comportamiento de exploración al principio del juego y a medida que avanzan los turnos comienza a centrar su comportamiento en el mapa convergiendo a un único punto.
+
+- **AgenteGreedy :** Este agente toma decisiones usando como heurística la distancia manhattan entre la posición de las unidades y los recursos, además tiene una estrategia de construcción de ciudades basada en buscar la mejor loza para que esta se auto sostenga durante el juego. Este agente desde el principio del juego presenta un comportamiento más localizado dado su punto de partida pero sigue explorando lo suficiente para obtener recursos.
+
+## Demo
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/BwE4jxz01-o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Observaciones y apuntes 
+
+Por un parte, agente de comportamiento aleatorio (randomAgent) es el agente menos competitivo en el ambiente, este se centra en la exploración mas que en la explotación lo que se traduce en una estrategia poco efectiva para lograr el objetivo del juego.
+
+Por otra parte, los agentes que basan su estrategia con simulating annealing y greedy muestran un claro comportamiento de exploración/explotación más equilibrado, en donde el primero evoluciona durante de la partida desde un comportamiento exploratorio a un mas centrado en la explotación y el segundo presenta un comportamiento más localizados desde el inicio de la partida explotando los recursos que tiene cerca, por lo cual si el punto de inicio de la partida presenta una alta densidad de recursos esta estrategia es la que presenta mejor desempeño de todas.
