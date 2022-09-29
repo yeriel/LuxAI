@@ -437,18 +437,19 @@ def agent(observation, configuration):
         energy = get_energy('a') 
         possible_ActionA(actions, player, observation, city_tiles, build_city, resource_tiles, cities, workers)
 
-    selection = np.random.choice(['a','b'])
-    e = 0
-    if selection == state_:
-        e = get_energy('a')
     else:
-        e = get_energy('b')
-        state_ = 'b'
-    
-    if acceptance(energy,e,Temp) >= np.random.random():
-        if selection == 'a':
-            possible_ActionA(actions, player, observation, city_tiles, build_city, resource_tiles, cities, workers)  
+        selection = np.random.choice(['a','b'])
+        e = 0
+        if selection == state_:
+            e = get_energy('a')
         else:
-            possible_ActionB(actions, player, observation, city_tiles, build_city, resource_tiles, cities, workers)
+            e = get_energy('b')
+            state_ = 'b'
+    
+        if acceptance(energy,e,Temp) >= np.random.random():
+            if selection == 'a':
+                possible_ActionA(actions, player, observation, city_tiles, build_city, resource_tiles, cities, workers)  
+            else:
+                possible_ActionB(actions, player, observation, city_tiles, build_city, resource_tiles, cities, workers)
 
     return actions
