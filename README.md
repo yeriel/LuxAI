@@ -1,6 +1,5 @@
 # LuxAI 
 
-
 **if you want to read this same document but in [Spanish](https://github.com/yeriel/LuxAI/blob/main/Spanish.md)**
 
 ## Introduction
@@ -75,6 +74,7 @@ The repository has 5 types of agents, these are:
 - **greedyAgent :** This agent makes decisions using as a heuristic the manhattan distance between the position of the units and the resources, it also has a strategy of construction of cities based on looking for the best loza so that this is self-supporting during the game. This agent from the beginning of the game presents a more localized behavior given its starting point but still explores enough to obtain resources.
 
 ## Demo
+The demonstration shows how to run a game between two agents, specifically the greedy agent vs. the simulating annealing agent.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/BwE4jxz01-o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

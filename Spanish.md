@@ -74,6 +74,8 @@ El repositorio tiene 5 tipos de agentes, estos son
 
 ## Demo
 
+En la demostración se muestra como ejecutar una partida entre dos agentes específicamente el agente greedy vs el agente simulating annealing.
+
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/BwE4jxz01-o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Observaciones y apuntes 
